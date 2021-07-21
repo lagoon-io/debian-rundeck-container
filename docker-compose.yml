@@ -1,0 +1,17 @@
+version: "2"
+services:
+  # Nginx + Rundeck
+  rundeck:
+    container_name: rundeck
+    build: ./rundeck/
+    environment:
+      # 特に必要ないが設定(参考)
+      TZ: "Asia/Tokyo"
+    # systemctlの有効化
+    privileged: true
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "8080:80"
